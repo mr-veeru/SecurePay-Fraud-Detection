@@ -1,6 +1,4 @@
 {
-  "solver": "liblinear",
-  "penalty": "l2",
-  "class_weight": "balanced",
-  "C": 1.0
+  "max_iter": 1000,
+  "C": 10.0
 }

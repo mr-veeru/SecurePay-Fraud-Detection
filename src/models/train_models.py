@@ -44,6 +44,32 @@ except ImportError:
     print("Warning: imbalanced-learn not available. Proceeding without SMOTE.")
     SMOTE_AVAILABLE = False
 
+MODEL_CONFIGS = {
+    'logistic_regression': {
+        'model': LogisticRegression(random_state=RANDOM_SEED),
+        'params': {
+            'C': [0.1, 1.0, 10.0],
+            'max_iter': [1000]
+        }
+    },
+    'random_forest': {
+        'model': RandomForestClassifier(random_state=RANDOM_SEED),
+        'params': {
+            'n_estimators': [100, 200],
+            'max_depth': [10, 20, None],
+            'min_samples_split': [2, 5]
+        }
+    },
+    'xgboost': {
+        'model': xgb.XGBClassifier(random_state=RANDOM_SEED) if XGBOOST_AVAILABLE else None,
+        'params': {
+            'learning_rate': [0.01, 0.1],
+            'n_estimators': [100, 200],
+            'max_depth': [3, 5, 7]
+        }
+    } if XGBOOST_AVAILABLE else None
+}
+
 def load_data():
     """Load and prepare the fraud detection dataset."""
     print("Loading and preparing data...")
@@ -90,82 +116,36 @@ def load_data():
     
     return X_train, X_test, y_train, y_test, feature_names
 
-def train_model_with_cross_validation(model, X_train, y_train, param_grid, name, cv=5, scoring='f1'):
-    """Train a model with cross-validation and hyperparameter tuning."""
-    print(f"Training {name} model with cross-validation...")
+def train_model(X_train, y_train, model_name):
+    """Train a single model with cross-validation and hyperparameter tuning."""
+    if model_name not in MODEL_CONFIGS or MODEL_CONFIGS[model_name] is None:
+        print(f"Model {model_name} not available")
+        return None
+        
+    config = MODEL_CONFIGS[model_name]
+    search = RandomizedSearchCV(
+        config['model'], 
+        config['params'],
+        n_iter=5, 
+        cv=CV_FOLDS,
+        scoring='f1',
+        n_jobs=-1,
+        random_state=RANDOM_SEED
+    )
     
     try:
-        # First, evaluate with cross-validation to detect overfitting early
-        from sklearn.model_selection import cross_val_score
-        
-        # Basic CV scores with default parameters
-        cv_scores = cross_val_score(model, X_train, y_train, cv=cv, scoring=scoring)
-        print(f"{name} initial CV {scoring} score: {cv_scores.mean():.4f} ± {cv_scores.std():.4f}")
-        
-        if cv_scores.mean() > 0.95:
-            print(f"WARNING: Very high CV scores ({cv_scores.mean():.4f}) suggest potential data leakage or overfitting")
-            print("Continuing with more regularization to prevent overfitting")
-            
-            # Add more regularization if suspiciously high scores
-            if hasattr(model, 'C'):
-                # For logistic regression, reduce C (increase regularization)
-                print("Increasing regularization for logistic regression")
-                model.C = 0.01
-            elif hasattr(model, 'max_depth'):
-                # For tree-based models, limit depth
-                print("Limiting tree depth to prevent overfitting")
-                model.max_depth = 5
-        
-        # Use RandomizedSearchCV instead of GridSearchCV to reduce computation
-        from sklearn.model_selection import RandomizedSearchCV
-        
-        # Use a small number of iterations to save computation
-        n_iter = min(5, len(X_train) // 1000) if X_train.shape[0] > 1000 else 3
-        n_iter = max(n_iter, 2)  # At least 2 iterations
-        
-        print(f"Using RandomizedSearchCV with {n_iter} iterations to reduce computation")
-        search = RandomizedSearchCV(
-            model, param_grid, n_iter=n_iter, cv=cv, scoring=scoring, n_jobs=-1, verbose=1,
-            return_train_score=True, random_state=42
-        )
-            
-        # Fit on the training data
         search.fit(X_train, y_train)
-        best_model = search.best_estimator_
+        model = search.best_estimator_
         
-        # Check for overfitting by comparing train and test scores from CV
-        if hasattr(search, 'cv_results_'):
-            cv_results = search.cv_results_
-            best_index = search.best_index_
-            train_score = cv_results['mean_train_score'][best_index]
-            test_score = cv_results['mean_test_score'][best_index]
+        # Save model and parameters
+        joblib.dump(model, f'models/{model_name}.pkl')
+        with open(f'models/{model_name}_params.json', 'w') as f:
+            json.dump(search.best_params_, f, indent=2)
             
-            if train_score - test_score > 0.1:  # More than 0.1 difference suggests overfitting
-                print(f"WARNING: Overfitting detected. Train score: {train_score:.4f}, Test score: {test_score:.4f}")
-                print("Consider using even stronger regularization")
-                
-                # Apply additional regularization to best model
-                if hasattr(best_model, 'max_depth') and best_model.max_depth is not None:
-                    old_depth = best_model.max_depth
-                    best_model.max_depth = max(3, int(old_depth * 0.7))  # Reduce depth by 30%
-                    print(f"Reduced max_depth from {old_depth} to {best_model.max_depth}")
-        
-        # Save the model
-        joblib.dump(best_model, f'models/{name.lower().replace(" ", "_")}.pkl')
-        
-        # Also save the best parameters for reference
-        best_params = search.best_params_ if hasattr(search, 'best_params_') else {}
-        with open(f'models/{name.lower().replace(" ", "_")}_params.json', 'w') as f:
-            json.dump(best_params, f, indent=2)
-        
-        print(f"{name} best parameters: {best_params}")
-        best_score = search.best_score_ if hasattr(search, 'best_score_') else None
-        if best_score:
-            print(f"{name} CV score: {best_score:.4f}")
-        
-        return best_model
+        print(f"{model_name} best score: {search.best_score_:.4f}")
+        return model
     except Exception as e:
-        print(f"Error training {name}: {e}")
+        print(f"Error training {model_name}: {e}")
         return None
 
 def train_logistic_regression(X_train, y_train):
@@ -182,7 +162,7 @@ def train_logistic_regression(X_train, y_train):
     logreg = LogisticRegression(max_iter=1000, random_state=42)
     
     # Train with cross-validation
-    return train_model_with_cross_validation(logreg, X_train, y_train, param_grid, "logistic_regression")
+    return train_model(X_train, y_train, 'logistic_regression')
 
 def train_random_forest(X_train, y_train):
     """Train a Random Forest classifier with hyperparameter tuning."""
@@ -207,7 +187,7 @@ def train_random_forest(X_train, y_train):
     )
     
     # Train with cross-validation
-    return train_model_with_cross_validation(rf, X_train, y_train, param_grid, "random_forest")
+    return train_model(X_train, y_train, 'random_forest')
 
 def train_xgboost(X_train, y_train):
     """Train XGBoost model with hyperparameter tuning."""
@@ -545,17 +525,25 @@ def run_training_pipeline(X_train, X_test, y_train, y_test, feature_names=None):
     # Save the scaler for inference
     joblib.dump(scaler, 'models/scaler.pkl')
     
-    # Train logistic regression
-    print("\n" + "="*50)
-    logreg = train_logistic_regression(X_train_scaled, y_train)
+    # Train models
+    models = {}
+    for model_name in MODEL_CONFIGS:
+        print(f"\nTraining {model_name}...")
+        model = train_model(X_train_scaled, y_train, model_name)
+        if model is not None:
+            models[model_name] = model
+            
+            # Evaluate on test set
+            y_pred = model.predict(X_test_scaled)
+            print(f"\n{model_name} Test Set Performance:")
+            print(classification_report(y_test, y_pred))
     
-    # Train random forest
-    print("\n" + "="*50)
-    rf = train_random_forest(X_train_scaled, y_train)
-    
-    # Train XGBoost
-    print("\n" + "="*50)
-    xgb_model = train_xgboost(X_train_scaled, y_train)
+    # Save feature names
+    feature_names = (feature_names if feature_names else 
+                    list(X_train.columns) if hasattr(X_train, 'columns') else 
+                    list(map(str, range(X_train.shape[1]))))
+    with open('models/feature_names.json', 'w') as f:
+        json.dump(feature_names, f)
     
     # Evaluate models
     print("\n" + "="*50)
@@ -563,15 +551,6 @@ def run_training_pipeline(X_train, X_test, y_train, y_test, feature_names=None):
     
     print("\nModel Evaluation:")
     print("-"*50)
-    
-    # Store models in a dictionary
-    models = {}
-    if logreg is not None:
-        models['logistic_regression'] = logreg
-    if rf is not None:
-        models['random_forest'] = rf
-    if xgb_model is not None:
-        models['xgboost'] = xgb_model
     
     # Evaluate each model
     results = evaluate_models(models, X_test_scaled, y_test)
@@ -584,15 +563,6 @@ def run_training_pipeline(X_train, X_test, y_train, y_test, feature_names=None):
         ensemble = create_ensemble_model(models, X_train_scaled, y_train, X_test_scaled, y_test)
         if ensemble is not None:
             models['ensemble'] = ensemble
-    
-    # Save feature names for inference
-    try:
-        with open('models/feature_names.json', 'w') as f:
-            json.dump(list(feature_names) if feature_names else 
-                      list(X_train.columns) if hasattr(X_train, 'columns') else 
-                      list(map(str, range(X_train.shape[1]))), f)
-    except Exception as e:
-        print(f"Error saving feature names: {e}")
     
     return models
 
