@@ -6,19 +6,9 @@ This module provides central configuration for all components.
 
 import os
 import json
-import sys
 from pathlib import Path
 from typing import Dict, Any
 
-# Try to import dotenv for .env file support
-try:
-    from dotenv import load_dotenv
-    # Load environment variables from .env file if it exists
-    load_dotenv()
-    DOTENV_AVAILABLE = True
-except ImportError:
-    print("python-dotenv not installed. Environment variables from .env will not be loaded.")
-    DOTENV_AVAILABLE = False
 
 # Base directories
 PROJECT_ROOT = Path(__file__).parent.parent.parent.absolute()
@@ -29,13 +19,11 @@ LOGS_DIR = os.getenv('LOGS_DIR', os.path.join(PROJECT_ROOT, "logs"))
 # Data directories
 RAW_DATA_DIR = os.path.join(DATA_DIR, "raw")
 PROCESSED_DATA_DIR = os.path.join(DATA_DIR, "processed")
-FEEDBACK_DIR = os.path.join(DATA_DIR, "feedback")
 
 # Model files
 LOGISTIC_REGRESSION_MODEL = os.path.join(MODELS_DIR, "logistic_regression.pkl")
 RANDOM_FOREST_MODEL = os.path.join(MODELS_DIR, "random_forest.pkl")
 XGBOOST_MODEL = os.path.join(MODELS_DIR, "xgboost.pkl")
-NEURAL_NETWORK_MODEL = os.path.join(MODELS_DIR, "neural_network.h5")
 SCALER_FILE = os.path.join(MODELS_DIR, "scaler.pkl")
 FEATURE_NAMES_FILE = os.path.join(MODELS_DIR, "feature_names.json")
 
@@ -46,17 +34,6 @@ API_URL = f"http://{API_HOST}:{API_PORT}"
 MAX_API_CALLS = int(os.getenv('MAX_API_CALLS', "100"))  # Max API calls per window
 API_RATE_LIMIT_WINDOW = int(os.getenv('API_RATE_LIMIT_WINDOW', "60"))  # 60 seconds
 DEFAULT_MODEL = os.getenv('DEFAULT_MODEL', "ensemble")
-
-# Security settings
-JWT_SECRET = os.getenv('JWT_SECRET', "your-secret-key-should-be-long-and-secure")
-
-# Database settings
-USE_DATABASE = os.getenv('USE_DATABASE', 'False').lower() == 'true'
-DATABASE_URL = os.getenv('DATABASE_URL', '')
-
-# Feature flags
-ENABLE_MODEL_RETRAINING = os.getenv('ENABLE_MODEL_RETRAINING', 'False').lower() == 'true'
-COLLECT_FEEDBACK = os.getenv('COLLECT_FEEDBACK', 'True').lower() == 'true'
 
 # Feature engineering settings
 TARGET_COLUMN = "is_fraud"
@@ -96,7 +73,7 @@ LOG_LEVEL = os.getenv('LOG_LEVEL', "INFO")
 LOG_FORMAT = os.getenv('LOG_FORMAT', "%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 # Create directories if they don't exist
-for directory in [DATA_DIR, MODELS_DIR, LOGS_DIR, RAW_DATA_DIR, PROCESSED_DATA_DIR, FEEDBACK_DIR]:
+for directory in [DATA_DIR, MODELS_DIR, LOGS_DIR, RAW_DATA_DIR, PROCESSED_DATA_DIR]:
     os.makedirs(directory, exist_ok=True)
 
 def load_user_config():
@@ -144,11 +121,10 @@ def generate_env_file():
             # Group settings by category
             categories = {
                 "API Configuration": ["API_HOST", "API_PORT", "API_URL"],
-                "Security Settings": ["JWT_SECRET", "MAX_API_CALLS", "API_RATE_LIMIT_WINDOW"],
-                "Feature Flags": ["ENABLE_MODEL_RETRAINING", "COLLECT_FEEDBACK"],
+                "Rate Limiting": ["MAX_API_CALLS", "API_RATE_LIMIT_WINDOW"],
                 "Path Configuration": ["DATA_DIR", "MODELS_DIR", "LOGS_DIR"],
                 "Model Parameters": ["DEFAULT_MODEL", "RF_N_ESTIMATORS", "RF_MAX_DEPTH", 
-                                      "XGB_LEARNING_RATE", "XGB_N_ESTIMATORS", "LR_C", "LR_MAX_ITER"]
+                                    "XGB_LEARNING_RATE", "XGB_N_ESTIMATORS", "LR_C", "LR_MAX_ITER"]
             }
             
             # Write settings by category

@@ -12,13 +12,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import joblib
 import json
-from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score, StratifiedKFold, RandomizedSearchCV
+from sklearn.model_selection import train_test_split, cross_val_score, RandomizedSearchCV
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import (
-    accuracy_score, precision_score, recall_score, f1_score, 
-    confusion_matrix, classification_report, roc_auc_score,
-    precision_recall_curve, roc_curve, average_precision_score
-)
+from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 import warnings
