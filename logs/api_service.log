@@ -1,0 +1,116 @@
+2025-04-07 12:49:18,954 - api_service - INFO - Loading models...
+2025-04-07 12:49:21,617 - api_service - INFO - Loaded scaler successfully
+2025-04-07 12:49:21,641 - api_service - INFO - Loaded feature names: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27']
+2025-04-07 12:49:21,641 - api_service - INFO - Loading model: logistic_regression
+2025-04-07 12:49:22,007 - api_service - INFO - Loaded logistic_regression model successfully
+2025-04-07 12:49:22,008 - api_service - INFO - Loading model: random_forest
+2025-04-07 12:49:22,335 - api_service - INFO - Loaded random_forest model successfully
+2025-04-07 12:49:22,335 - api_service - INFO - Models loaded: 2 of 3
+2025-04-07 12:49:22,335 - api_service - INFO - Starting API server...
+2025-04-07 12:49:22,339 - api_service - INFO - Using Gunicorn available (use by running 'gunicorn -w 4 -b 0.0.0.0:5000 app:app')
+2025-04-07 12:59:10,252 - api_service - INFO - Loading models...
+2025-04-07 12:59:12,598 - api_service - INFO - Loaded scaler successfully
+2025-04-07 12:59:12,600 - api_service - INFO - Loaded feature names: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27']
+2025-04-07 12:59:12,601 - api_service - INFO - Loading model: logistic_regression
+2025-04-07 12:59:12,906 - api_service - INFO - Loaded logistic_regression model successfully
+2025-04-07 12:59:12,907 - api_service - INFO - Loading model: random_forest
+2025-04-07 12:59:13,317 - api_service - INFO - Loaded random_forest model successfully
+2025-04-07 12:59:13,317 - api_service - INFO - Models loaded: 2 of 3
+2025-04-07 12:59:13,317 - api_service - INFO - Starting API server...
+2025-04-07 12:59:13,321 - api_service - INFO - Using Gunicorn available (use by running 'gunicorn -w 4 -b 0.0.0.0:5000 app:app')
+2025-04-07 14:06:51,330 - api_service - INFO - Loading models...
+2025-04-07 14:06:53,629 - api_service - INFO - Loaded scaler successfully
+2025-04-07 14:06:53,632 - api_service - INFO - Loaded feature names: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27']
+2025-04-07 14:06:53,633 - api_service - INFO - Loading model: logistic_regression
+2025-04-07 14:06:53,991 - api_service - INFO - Loaded logistic_regression model successfully
+2025-04-07 14:06:53,992 - api_service - INFO - Loading model: random_forest
+2025-04-07 14:06:54,269 - api_service - INFO - Loaded random_forest model successfully
+2025-04-07 14:06:54,269 - api_service - INFO - Models loaded: 2 of 3
+2025-04-07 14:06:54,270 - api_service - INFO - Starting API server...
+2025-04-07 14:06:54,275 - api_service - INFO - Using Gunicorn available (use by running 'gunicorn -w 4 -b 0.0.0.0:5000 app:app')
+2025-04-07 14:33:04,851 - api_service - INFO - Loading models...
+2025-04-07 14:33:07,471 - api_service - INFO - Loaded scaler successfully
+2025-04-07 14:33:07,475 - api_service - INFO - Loaded feature names: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27']
+2025-04-07 14:33:07,476 - api_service - INFO - Loading model: logistic_regression
+2025-04-07 14:33:07,783 - api_service - INFO - Loaded logistic_regression model successfully
+2025-04-07 14:33:07,783 - api_service - INFO - Loading model: random_forest
+2025-04-07 14:33:08,114 - api_service - INFO - Loaded random_forest model successfully
+2025-04-07 14:33:08,115 - api_service - INFO - Models loaded: 2 of 3
+2025-04-07 14:33:08,115 - api_service - INFO - Starting API server...
+2025-04-07 14:33:08,120 - api_service - INFO - Using Gunicorn available (use by running 'gunicorn -w 4 -b 0.0.0.0:5000 app:app')
+2025-04-07 15:16:02,469 - api_service - INFO - Loading models...
+2025-04-07 15:16:03,974 - api_service - INFO - Loaded scaler successfully
+2025-04-07 15:16:03,976 - api_service - INFO - Loaded feature names: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27']
+2025-04-07 15:16:03,976 - api_service - INFO - Loading model: logistic_regression
+2025-04-07 15:16:04,185 - api_service - INFO - Loaded logistic_regression model successfully
+2025-04-07 15:16:04,186 - api_service - INFO - Loading model: random_forest
+2025-04-07 15:16:04,387 - api_service - INFO - Loaded random_forest model successfully
+2025-04-07 15:16:04,388 - api_service - INFO - Models loaded: 2 of 3
+2025-04-07 15:16:04,388 - api_service - INFO - Starting API server...
+2025-04-07 15:16:04,392 - api_service - INFO - Using Gunicorn available (use by running 'gunicorn -w 4 -b 0.0.0.0:5000 app:app')
+2025-04-07 15:40:02,287 - api_service - INFO - Loading models...
+2025-04-07 15:40:03,762 - api_service - INFO - Loaded scaler successfully
+2025-04-07 15:40:03,763 - api_service - INFO - Loaded feature names: ['cc_num', 'merchant', 'category', 'amt', 'first', 'last', 'street', 'city', 'state', 'zip', 'lat', 'long', 'city_pop', 'job', 'trans_num', 'state_display', 'trans_date_trans_time_year', 'trans_date_trans_time_month', 'trans_date_trans_time_day', 'dob_year', 'dob_month', 'dob_day', 'log_amount', 'amount_bin_low', 'amount_bin_medium', 'amount_bin_high', 'distance_from_origin', 'category_risk']
+2025-04-07 15:40:03,763 - api_service - INFO - Loading model: logistic_regression
+2025-04-07 15:40:03,939 - api_service - INFO - Loaded logistic_regression model successfully
+2025-04-07 15:40:03,939 - api_service - INFO - Loading model: random_forest
+2025-04-07 15:40:04,129 - api_service - INFO - Loaded random_forest model successfully
+2025-04-07 15:40:04,130 - api_service - INFO - Models loaded: 2 of 3
+2025-04-07 15:40:04,130 - api_service - INFO - Starting API server...
+2025-04-07 15:40:04,133 - api_service - INFO - Using Gunicorn available (use by running 'gunicorn -w 4 -b 0.0.0.0:5000 app:app')
+2025-04-07 16:02:52,059 - api_service - INFO - Loading models...
+2025-04-07 16:02:53,710 - api_service - INFO - Loaded scaler successfully
+2025-04-07 16:02:53,712 - api_service - INFO - Loaded feature names: ['cc_num', 'merchant', 'category', 'amt', 'first', 'last', 'street', 'city', 'state', 'zip', 'lat', 'long', 'city_pop', 'job', 'trans_num', 'state_display', 'trans_date_trans_time_year', 'trans_date_trans_time_month', 'trans_date_trans_time_day', 'dob_year', 'dob_month', 'dob_day', 'log_amount', 'amount_bin_low', 'amount_bin_medium', 'amount_bin_high', 'distance_from_origin', 'category_risk']
+2025-04-07 16:02:53,713 - api_service - INFO - Loading model: logistic_regression
+2025-04-07 16:02:53,905 - api_service - INFO - Loaded logistic_regression model successfully
+2025-04-07 16:02:53,905 - api_service - INFO - Loading model: random_forest
+2025-04-07 16:02:54,075 - api_service - INFO - Loaded random_forest model successfully
+2025-04-07 16:02:54,075 - api_service - INFO - Models loaded: 2 of 3
+2025-04-07 16:02:54,075 - api_service - INFO - Starting API server...
+2025-04-07 16:02:54,079 - api_service - INFO - Using Gunicorn available (use by running 'gunicorn -w 4 -b 0.0.0.0:5000 app:app')
+2025-04-07 16:38:04,406 - api_service - INFO - Loading models...
+2025-04-07 16:38:05,756 - api_service - INFO - Loaded scaler successfully
+2025-04-07 16:38:05,758 - api_service - INFO - Loaded feature names: ['cc_num', 'merchant', 'category', 'amt', 'first', 'last', 'street', 'city', 'state', 'zip', 'lat', 'long', 'city_pop', 'job', 'trans_num', 'state_display', 'trans_date_trans_time_year', 'trans_date_trans_time_month', 'trans_date_trans_time_day', 'dob_year', 'dob_month', 'dob_day', 'log_amount', 'amount_bin_low', 'amount_bin_medium', 'amount_bin_high', 'distance_from_origin', 'category_risk']
+2025-04-07 16:38:05,758 - api_service - INFO - Loading model: logistic_regression
+2025-04-07 16:38:05,911 - api_service - INFO - Loaded logistic_regression model successfully
+2025-04-07 16:38:05,912 - api_service - INFO - Loading model: random_forest
+2025-04-07 16:38:06,055 - api_service - INFO - Loaded random_forest model successfully
+2025-04-07 16:38:06,055 - api_service - INFO - Models loaded: 2 of 3
+2025-04-07 16:38:06,055 - api_service - INFO - Starting API server...
+2025-04-07 16:38:06,058 - api_service - INFO - Using Gunicorn available (use by running 'gunicorn -w 4 -b 0.0.0.0:5000 app:app')
+2025-04-07 16:39:51,605 - api_service - INFO - Request: GET / from 127.0.0.1
+2025-04-07 16:39:51,607 - api_service - INFO - Response: 404 in 0.00s
+2025-04-07 16:39:51,732 - api_service - INFO - Request: GET /favicon.ico from 127.0.0.1
+2025-04-07 16:39:51,733 - api_service - INFO - Response: 404 in 0.00s
+2025-04-07 16:40:56,255 - api_service - INFO - Request: GET /models from 127.0.0.1
+2025-04-07 16:40:56,256 - api_service - INFO - Response: 200 in 0.00s
+2025-04-07 16:41:08,101 - api_service - INFO - Request: GET /models/logistic_regression.pkl from 127.0.0.1
+2025-04-07 16:41:08,102 - api_service - INFO - Response: 404 in 0.00s
+2025-04-07 16:41:13,269 - api_service - INFO - Request: GET /models/logistic_regression from 127.0.0.1
+2025-04-07 16:41:13,270 - api_service - INFO - Response: 404 in 0.00s
+2025-04-07 16:41:42,713 - api_service - INFO - Request: GET /models/feature_names.json from 127.0.0.1
+2025-04-07 16:41:42,714 - api_service - INFO - Response: 404 in 0.00s
+2025-04-07 16:41:47,624 - api_service - INFO - Request: GET /models/feature_names from 127.0.0.1
+2025-04-07 16:41:47,625 - api_service - INFO - Response: 404 in 0.00s
+2025-04-07 16:45:21,834 - api_service - INFO - Loading models...
+2025-04-07 16:45:23,124 - api_service - INFO - Loaded scaler successfully
+2025-04-07 16:45:23,126 - api_service - INFO - Loaded feature names: ['cc_num', 'merchant', 'category', 'amt', 'first', 'last', 'street', 'city', 'state', 'zip', 'lat', 'long', 'city_pop', 'job', 'trans_num', 'state_display', 'trans_date_trans_time_year', 'trans_date_trans_time_month', 'trans_date_trans_time_day', 'dob_year', 'dob_month', 'dob_day', 'log_amount', 'amount_bin_low', 'amount_bin_medium', 'amount_bin_high', 'distance_from_origin', 'category_risk']
+2025-04-07 16:45:23,126 - api_service - INFO - Loading model: logistic_regression
+2025-04-07 16:45:23,266 - api_service - INFO - Loaded logistic_regression model successfully
+2025-04-07 16:45:23,266 - api_service - INFO - Loading model: random_forest
+2025-04-07 16:45:23,409 - api_service - INFO - Loaded random_forest model successfully
+2025-04-07 16:45:23,410 - api_service - INFO - Models loaded: 2 of 3
+2025-04-07 16:45:23,410 - api_service - INFO - Starting API server...
+2025-04-07 16:45:23,412 - api_service - INFO - Using Gunicorn available (use by running 'gunicorn -w 4 -b 0.0.0.0:5000 app:app')
+2025-04-07 17:17:34,146 - api_service - INFO - Loaded scaler successfully
+2025-04-07 17:17:34,147 - api_service - INFO - Loaded feature names: ['cc_num', 'merchant', 'category', 'amt', 'first', 'last', 'street', 'city', 'state', 'zip', 'lat', 'long', 'city_pop', 'job', 'trans_num', 'state_display', 'trans_date_trans_time_year', 'trans_date_trans_time_month', 'trans_date_trans_time_day', 'dob_year', 'dob_month', 'dob_day', 'log_amount', 'amount_bin_low', 'amount_bin_medium', 'amount_bin_high', 'distance_from_origin', 'category_risk']
+2025-04-07 17:17:34,328 - api_service - INFO - Loaded logistic_regression model successfully
+2025-04-07 17:17:34,512 - api_service - INFO - Loaded random_forest model successfully
+2025-04-07 17:17:34,512 - api_service - INFO - Starting API server...
+2025-04-07 17:17:34,552 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.102:5000
+2025-04-07 17:17:34,552 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-07 17:19:39,733 - werkzeug - INFO - 127.0.0.1 - - [07/Apr/2025 17:19:39] "GET /models HTTP/1.1" 200 -
+2025-04-07 17:21:33,939 - werkzeug - INFO - 127.0.0.1 - - [07/Apr/2025 17:21:33] "GET /models HTTP/1.1" 200 -
