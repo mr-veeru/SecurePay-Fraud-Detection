@@ -258,31 +258,6 @@ Extend `dashboard.py` with:
 - **Web Framework**: Flask, Streamlit
 - **Utilities**: joblib
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🆘 Support
-
-For issues and questions:
-1. Check the documentation
-2. Review existing issues
-3. Create a new issue with detailed information
-
-## 🎉 Acknowledgments
-
-- Built with modern Python best practices
-- Designed for educational and production use
-- Optimized for maintainability and scalability
-
 ---
 
 **Ready to detect fraud? Start with `python main.py`!** 🚀
