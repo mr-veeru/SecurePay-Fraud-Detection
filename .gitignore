@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Python
 __pycache__/
 *.py[cod]
@@ -21,20 +20,6 @@ models/*.json
 models/*.npy
 
 # Logs
-*.log
-
-# IDE
-.vscode/
-.idea/
-
-# OS
-=======
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Logs
 logs/
 *.log
 
@@ -46,13 +31,12 @@ build/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# IDE specific files
-.idea/
+# IDE
 .vscode/
+.idea/
 *.swp
 *.swo
 
-# OS specific files
->>>>>>> f6dcf863aa3e3989f3f52f4204f87e41e13df1c4
+# OS
 .DS_Store
 Thumbs.db 
